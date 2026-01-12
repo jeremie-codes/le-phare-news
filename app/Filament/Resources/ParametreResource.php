@@ -33,15 +33,15 @@ class ParametreResource extends Resource
                             ->label('type d\'information')
                             ->options([
                                 'phone' => 'Téléphone',
-                                'email' => 'Email',
+                                'email' => 'Adresse Email',
                                 'address' => 'Adresse',
-                                'whatsapp' => 'WhatsApp',
-                                'facebook' => 'Facebook',
-                                'instagram' => 'Instagram',
-                                'twitter' => 'Twitter',
-                                'youtube' => 'YouTube',
-                                'linkedin' => 'LinkedIn',
-                                'numeropub' => 'contact pour publicité',
+                                'whatsapp' => 'Lien WhatsApp',
+                                'facebook' => 'Lien Facebook',
+                                'instagram' => 'Lien Instagram',
+                                'twitter' => 'Lien Twitter',
+                                'youtube' => 'Lien YouTube',
+                                'linkedin' => 'Lien LinkedIn',
+                                'numeropub' => 'Contact pour publicité',
                             ])
                             ->placeholder('Choisir le type')
                             ->required(),

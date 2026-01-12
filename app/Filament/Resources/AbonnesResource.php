@@ -10,8 +10,6 @@ use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class AbonnesResource extends Resource
 {
@@ -20,7 +18,8 @@ class AbonnesResource extends Resource
     protected static ?string $navigationIcon = 'heroicon-o-user-group';
     protected static ?string $navigationGroup = 'Gestion des utilisateurs';
     protected static ?int $navigationSort = 3;
-    protected static ?string $label = 'Abonnées';
+    protected static ?string $navigationLabel = 'Newsletter';
+    protected static ?string $label = 'Abonnées Newsletter';
 
     public static function form(Form $form): Form
     {

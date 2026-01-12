@@ -1,65 +1,97 @@
-<?php $page='about' ?>
-
 @extends('layouts.app')
 
+@section('title', 'ACTUALITÉS')
+
 @section('content')
-<div class="bg-white text-gray-800 py-8">
-    <div class="max-w-7xl mx-auto px-4 flex flex-col md:flex-row gap-10">
-
-        <!-- BLOG MAIN CONTENT -->
-        <div class="w-full md:w-2/3 space-y-10">
-            <h2 class="text-2xl font-bold uppercase">Actualités</h2>
-
-            <!-- Blog Item -->
-            @if(!$news->isEmpty())
-                @foreach($news as $new)
-                <div class="flex flex-col md:flex-row gap-4 border-b border-gray-300 pb-6">
-                    <div class="flex-1">
-                        <h3 class="text-sm font-bold text-blue-600 uppercase">
-                            {{ $new->title }}
-                        </h3>
-                        <div class="flex items-center gap-4 text-sm text-gray-500 my-2">
-                            <span><i class="fa fa-calendar-alt" aria-hidden="true"></i> {{ \Carbon\Carbon::parse($new->scheduled_at)->format('H:i') }}
-                            {{ \Carbon\Carbon::parse($new->scheduled_at)->translatedFormat(', d F') }}</span>
-                            <span><i class="fa fa-user" aria-hidden="true"></i>  {{ Illuminate\Support\Str::limit(strip_tags($new->author->name), 8) }}</span>
-                            <span><i class="fa fa-message" aria-hidden="true"></i> {{ $new->comments->count() }}</span>
+   <!-- News With Sidebar Start -->
+    <div class="container-fluid">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="section-title">
+                                <h4 class="m-0 text-uppercase font-weight-bold">Actualités</h4>
+                            </div>
                         </div>
-                        <div class="w-full sm:flex justify-end">
-                            <div class="w-full md:w-100 sm:h-38 overflow-hidden ">
-                                <img src="{{ asset('storage/' . $new->cover_image) }}" alt="Blog image" class="w-full h-full object-cover">
-                            </div>
-                            <div class="px-3 w-full">
-                                <div class="text-sm text-gray-700 text-justify sm:pt-0 pt-4">
-                                    {{ Illuminate\Support\Str::limit(strip_tags($new->content), 205) }}
+
+                        @forelse($news as $new)
+                        <div class="col-lg-4">
+                            <div class="mb-3 position-relative">
+                                <img class="img-fluid w-100" src="{{ asset($new->image ?: 'assets/img/bannerNews-2.jpg') }}" style="object-fit: cover;">
+                                <div class="p-4 bg-white border border-top-0">
+                                    <div class="mb-2">
+                                        <a class="p-2 mr-2 badge badge-primary text-uppercase font-weight-semi-bold"
+                                            href="#">{{ $new->category->name }}</a>
+                                        <a class="text-body" href="#"><small>{{ $new->created_at->format('d M Y') }}</small></a>
+                                    </div>
+                                    <a class="mb-3 d-block text-secondary text-uppercase font-weight-bold" href="#">{{ $new->title }}</a>
+                                    {!! count($new->content) > 200 ? substr($new->content, 0, 200)."..." : $new->content !!}
                                 </div>
-                                <a href="{{ route('actualites.show', $new->id) }}" class="text-blue-600 text-sm font-semibold hover:underline mt-2 inline-block">Voir Plus</a>
+                                <div class="p-4 bg-white border d-flex justify-content-between border-top-0">
+                                    <div class="d-flex align-items-center">
+                                        <img class="mr-2 rounded-circle" src="{{ asset('assets/img/logo.jpeg') }}" width="25" height="25" alt="">
+                                        <small>Le Phare News</small>
+                                    </div>
+                                    <div class="d-flex align-items-center">
+                                        <small class="ml-3"><i class="mr-2 far fa-eye"></i></small>
+                                        {{-- <small class="ml-3"><i class="mr-2 far fa-comment"></i>123</small> --}}
+                                    </div>
+                                </div>
                             </div>
+                        </div>
+                        @empty
+                            <div class=" position-relative">
+                                <p>Aucune actualité disponible</p>
+                            </div>
+                        @endforelse
+
+
+                        <div class="mb-3 col-lg-12">
+                            <a href="#"><img class="img-fluid w-100" src="img/ads-728x90.png" alt=""></a>
+                        </div>
+
+                    @if ($news->hasPages())
+                    <div class="row">
+                        <div class="col-12">
+                            <nav aria-label="Page navigation">
+                                <ul class="pagination justify-content-center">
+
+                                    {{-- Previous Page --}}
+                                    <li class="page-item {{ $news->onFirstPage() ? 'disabled' : '' }}">
+                                        <a class="page-link"
+                                        href="{{ $news->previousPageUrl() ?? '#' }}"
+                                        aria-label="Previous">
+                                            <span aria-hidden="true">&laquo;</span>
+                                        </a>
+                                    </li>
+
+                                    {{-- Pagination Elements --}}
+                                    @foreach ($news->links()->elements[0] ?? [] as $page => $url)
+                                        <li class="page-item {{ $news->currentPage() === $page ? 'active' : '' }}">
+                                            <a class="page-link" href="{{ $url }}">{{ $page }}</a>
+                                        </li>
+                                    @endforeach
+
+                                    {{-- Next Page --}}
+                                    <li class="page-item {{ $news->hasMorePages() ? '' : 'disabled' }}">
+                                        <a class="page-link"
+                                        href="{{ $news->nextPageUrl() ?? '#' }}"
+                                        aria-label="Next">
+                                            <span aria-hidden="true">&raquo;</span>
+                                        </a>
+                                    </li>
+
+                                </ul>
+                            </nav>
                         </div>
                     </div>
+                    @endif
 
+                    </div>
                 </div>
-                @endforeach
-            @else
-                <div class="text-center text-gray-500 py-10">
-                    <p>Aucune actualité disponible pour cette catégorie.</p>
-                </div>
-            @endif
-        </div>
-
-        <!-- SIDEBAR -->
-        <aside class="w-full md:w-1/3 space-y-8">
-            <!-- Categories -->
-            <div>
-                <h3 class="text-xl font-bold uppercase mb-4">Categories</h3>
-                <ul class="space-y-2 text-sm font-semibold text-blue-600">
-                    @foreach($categories as $cat)
-                    <li class="border-b-1 border-slate-300 py-2">
-                        <a href="{{ url('/news/'. $cat->name ) }}" class="hover:underline-none ">{{ $cat->name }}</a>
-                    </li>
-                    @endforeach
-                </ul>
             </div>
-        </aside>
+        </div>
     </div>
-</div>
+    <!-- News With Sidebar End -->
 @endsection

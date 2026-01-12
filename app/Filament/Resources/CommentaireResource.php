@@ -20,6 +20,7 @@ class CommentaireResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-chat-bubble-bottom-center-text';
     protected static ?string $navigationGroup = 'Autres options';
+    protected static ?string $label = 'Commentaires';
     protected static ?int $navigationSort = 1;
 
     public static function form(Form $form): Form

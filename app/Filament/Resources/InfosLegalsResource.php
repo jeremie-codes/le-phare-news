@@ -72,6 +72,11 @@ class InfosLegalsResource extends Resource
             ]);
     }
 
+    public static function canAccess(): bool
+    {
+        return false;
+    }
+
     public static function getRelations(): array
     {
         return [

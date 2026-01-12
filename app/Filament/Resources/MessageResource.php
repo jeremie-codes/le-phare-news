@@ -42,11 +42,7 @@ class MessageResource extends Resource
                 Forms\Components\Textarea::make('content')
                     ->required()
                     ->label('Contenu du message'),
-            ])->columns(2)->columnSpan([
-                'sm' => 2,
-            ])->columnSpan([
-                'md' => 1,
-            ]);
+            ])->columns(2);
     }
 
     public static function table(Table $table): Table

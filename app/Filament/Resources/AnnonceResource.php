@@ -21,6 +21,7 @@ class AnnonceResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-megaphone';
     protected static ?string $navigationGroup = 'Content';
+    protected static ?string $label = 'Annonces / Publicités';
     protected static ?int $navigationSort = 3;
 
     public static function form(Form $form): Form
