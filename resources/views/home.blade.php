@@ -13,6 +13,11 @@
                         <div class="overflow-hidden position-relative" style="height: 500px;">
                             <img class="img-fluid h-100" src="{{ asset( $banner->cover_image ? 'storage/' . $banner->cover_image: 'assets/img/bannerNews-1.jpg') }}" style="object-fit: cover;">
                             <div class="overlay">
+                                <div class="mb-2">
+                                    <a class="p-2 mr-2 badge badge-primary text-uppercase font-weight-semi-bold"
+                                        href="#">{{ $banner->category->name }}</a>
+                                    <a class="text-white" href="#"><small>{{ $lastvedette->created_at->format('d M, Y') }}</small></a>
+                                </div>
                                 <a href="{{ route('news.show', $banner->id) }}" class="m-0 text-white h2 text-uppercase font-weight-bold" href="#">{{ $banner->title }}</a>
                             </div>
                         </div>
@@ -141,7 +146,7 @@
                             <div class="mb-2">
                                 <a class="p-2 mr-2 badge badge-primary text-uppercase font-weight-semi-bold"
                                     href="#">{{ $lastvedette->category->name }}</a>
-                                <a class="text-white" href="{{ route('news.show', $lastvedette->id) }}"><small>{{ $lastvedette->created_at->format('d M Y') }}</small></a>
+                                <a class="text-white" href="{{ route('news.show', $lastvedette->id) }}"><small>{{ $lastvedette->created_at->format('d M, Y') }}</small></a>
                             </div>
                             <a class="m-0 text-white h6 text-uppercase font-weight-semi-bold" href="#">{{ substr($lastvedette->title, 0, 40) }}</a>
                         </div>
@@ -177,7 +182,7 @@
                                     <div class="mb-2">
                                         <a class="p-2 mr-2 badge badge-primary text-uppercase font-weight-semi-bold"
                                             href="#">{{ $lastnew->category->name }}</a>
-                                        <a class="text-body" href="#"><small>{{ $lastnew->created_at->format('d M Y') }}</small></a>
+                                        <a class="text-body" href="#"><small>{{ $lastnew->created_at->format('d M, Y') }}</small></a>
                                     </div>
                                     <a href="{{ route('news.show', $lastnew->id) }}" class="mb-3 d-block text-secondary text-uppercase font-weight-bold" href="#">{{ $lastnew->title }}</a>
                                     {!! strlen($lastnew->content) > 200 ? substr($lastnew->content, 0, 200)."..." : $lastnew->content !!}

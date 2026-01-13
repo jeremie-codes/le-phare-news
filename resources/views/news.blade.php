@@ -23,7 +23,7 @@
                                     <div class="mb-2">
                                         <a class="p-2 mr-2 badge badge-primary text-uppercase font-weight-semi-bold"
                                             href="#">{{ $new->category->name }}</a>
-                                        <a class="text-body" href="#"><small>{{ $new->created_at->format('d M Y') }}</small></a>
+                                        <a class="text-body" href="#"><small>{{ $new->created_at->format('d M, Y') }}</small></a>
                                     </div>
                                     <a class="mb-3 d-block text-secondary text-uppercase font-weight-bold" href="#">{{ $new->title }}</a>
                                     {!! count($new->content) > 200 ? substr($new->content, 0, 200)."..." : $new->content !!}

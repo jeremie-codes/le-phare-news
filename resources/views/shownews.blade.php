@@ -51,7 +51,7 @@
                             <div class="mb-3">
                                 <a class="p-2 mr-2 badge badge-primary text-uppercase font-weight-semi-bold"
                                     href="#">{{ $news->category->name }}</a>
-                                <a class="text-body" href="#">12 Jan, 2026</a>
+                                <a class="text-body" href="#"><small>{{ $news->created_at->format('d M, Y') }}</small></a>
                             </div>
 
                             <h3 class="mb-3 text-secondary text-uppercase font-weight-bold">{{$news->title }}</h3>
