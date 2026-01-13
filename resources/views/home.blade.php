@@ -252,42 +252,42 @@
                         </div>
                         @endforelse
 
-                        @if ($news->hasPages())
-                    <div class="p-1 bg-white border row border-top-0">
-                        <div class="col-12">
-                            <nav aria-label="Page navigation">
-                                <ul class="pagination justify-content-center">
+                        @if ($categories->hasPages())
+                        <div class="p-1 bg-white border row border-top-0">
+                            <div class="col-12">
+                                <nav aria-label="Page navigation">
+                                    <ul class="pagination justify-content-center">
 
-                                    {{-- Previous Page --}}
-                                    <li class="page-item {{ $news->onFirstPage() ? 'disabled' : '' }}">
-                                        <a class="page-link"
-                                        href="{{ $news->previousPageUrl() ?? '#' }}"
-                                        aria-label="Previous">
-                                            <span aria-hidden="true">&laquo;</span>
-                                        </a>
-                                    </li>
-
-                                    {{-- Pagination Elements --}}
-                                    @foreach ($news->links()->elements[0] ?? [] as $page => $url)
-                                        <li class="page-item {{ $news->currentPage() === $page ? 'active' : '' }}">
-                                            <a class="page-link" href="{{ $url }}">{{ $page }}</a>
+                                        {{-- Previous Page --}}
+                                        <li class="page-item {{ $categories->onFirstPage() ? 'disabled' : '' }}">
+                                            <a class="page-link"
+                                            href="{{ $categories->previousPageUrl() ?? '#' }}"
+                                            aria-label="Previous">
+                                                <span aria-hidden="true">&laquo;</span>
+                                            </a>
                                         </li>
-                                    @endforeach
 
-                                    {{-- Next Page --}}
-                                    <li class="page-item {{ $news->hasMorePages() ? '' : 'disabled' }}">
-                                        <a class="page-link"
-                                        href="{{ $news->nextPageUrl() ?? '#' }}"
-                                        aria-label="Next">
-                                            <span aria-hidden="true">&raquo;</span>
-                                        </a>
-                                    </li>
+                                        {{-- Pagination Elements --}}
+                                        @foreach ($categories->links()->elements[0] ?? [] as $page => $url)
+                                            <li class="page-item {{ $categories->currentPage() === $page ? 'active' : '' }}">
+                                                <a class="page-link" href="{{ $url }}">{{ $page }}</a>
+                                            </li>
+                                        @endforeach
 
-                                </ul>
-                            </nav>
+                                        {{-- Next Page --}}
+                                        <li class="page-item {{ $categories->hasMorePages() ? '' : 'disabled' }}">
+                                            <a class="page-link"
+                                            href="{{ $categories->nextPageUrl() ?? '#' }}"
+                                            aria-label="Next">
+                                                <span aria-hidden="true">&raquo;</span>
+                                            </a>
+                                        </li>
+
+                                    </ul>
+                                </nav>
+                            </div>
                         </div>
-                    </div>
-                    @endif
+                        @endif
                     </div>
                     <!-- Popular News End -->
 

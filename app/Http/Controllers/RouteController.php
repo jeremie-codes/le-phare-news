@@ -40,7 +40,7 @@ class RouteController extends Controller
     {
 
         $news = Article::where('type', 'news')->paginate(10);
-        $categories = Category::all();
+        $categories = Category::paginate(4);
         $configs = Parametre::all();
 
         $breakingNews = BreakingNews::where('is_active', true)->latest()->get();
