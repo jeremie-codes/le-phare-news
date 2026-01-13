@@ -16,7 +16,7 @@
                                 <div class="mb-2">
                                     <a class="p-2 mr-2 badge badge-primary text-uppercase font-weight-semi-bold"
                                         href="#">{{ $banner->category->name }}</a>
-                                    <a class="text-white" href="#"><small>{{ $lastvedette->created_at->format('d M, Y') }}</small></a>
+                                    <a class="text-white" href="#"><small>{{ $banner->created_at->format('d M, Y') }}</small></a>
                                 </div>
                                 <a href="{{ route('news.show', $banner->id) }}" class="m-0 text-white h2 text-uppercase font-weight-bold" href="#">{{ $banner->title }}</a>
                             </div>
