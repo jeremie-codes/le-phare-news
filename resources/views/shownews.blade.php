@@ -32,7 +32,7 @@
                         <div class="p-4 bg-white border border-top-0">
                             <div class="mb-3">
                                 <a class="p-2 mr-2 badge badge-primary text-uppercase font-weight-semi-bold"
-                                    href="#">{{ $new->category->name }}</a>
+                                    href="#">{{ $news->category->name }}</a>
                                 <a class="text-body" href="#">12 Jan, 2026</a>
                             </div>
 
