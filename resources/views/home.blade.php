@@ -13,7 +13,7 @@
                         <div class="overflow-hidden position-relative" style="height: 500px;">
                             <img class="img-fluid h-100" src="{{ asset( $banner->cover_image ? 'storage/' . $banner->cover_image: 'assets/img/bannerNews-1.jpg') }}" style="object-fit: cover;">
                             <div class="overlay">
-                                <a href="{{ route('news.show', $banner->id) }}" class="m-0 text-white h2 text-uppercase font-weight-bold" href="#">Lorem ipsum dolor sit amet elit. Proin vitae porta diam...</a>
+                                <a href="{{ route('news.show', $banner->id) }}" class="m-0 text-white h2 text-uppercase font-weight-bold" href="#">{{ $banner->title }}</a>
                             </div>
                         </div>
                         @endforeach
