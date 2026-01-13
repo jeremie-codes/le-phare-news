@@ -149,7 +149,7 @@ class ArticleResource extends Resource
             ->columns([
                 Tables\Columns\ImageColumn::make('cover_image')
                     ->label('Image')
-                    ->getStateUsing(fn (Article $record) => asset('storage/' . $record->cover_image)),
+                    ->getStateUsing(fn (Article $record) => asset($record->cover_image)),
                 Tables\Columns\TextColumn::make('title')
                     ->searchable()
                     ->sortable(),
