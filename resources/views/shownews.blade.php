@@ -28,7 +28,7 @@
                 <div class="col-lg-12">
                     <!-- News Detail Start -->
                     <div class="mb-3 position-relative">
-                        <img class="img-fluid w-100" src="{{ asset('storage/' . $news->image) }}" alt="" style="object-fit: cover;">
+                        <img class="img-fluid w-100" src="{{ asset('storage/' . $news->cover_image) }}" alt="" style="object-fit: cover;">
                         <div class="p-4 bg-white border border-top-0">
                             <div class="mb-3">
                                 <a class="p-2 mr-2 badge badge-primary text-uppercase font-weight-semi-bold"
