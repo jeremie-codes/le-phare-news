@@ -67,7 +67,7 @@ class RouteController extends Controller
         $breakingNews = BreakingNews::where('is_active', true)->latest()->get();
         $configs = Parametre::all();
 
-        return view('shownews', compact('configs', 'article', 'breakingNews'));
+        return view('shownews', compact('configs', 'news', 'breakingNews'));
     }
 
     public function contact()
