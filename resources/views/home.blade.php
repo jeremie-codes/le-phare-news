@@ -241,7 +241,7 @@
                         <div class="p-3 bg-white border border-top-0">
                             <div class="mb-3 bg-white d-flex align-items-center" style="max-height: 110px;">
                                 <img class="img-fluid" src="{{ asset($category->image) }}" alt="">
-                                <div class="px-3 border w-100 h-100 d-flex flex-column justify-content-center border-left-0">
+                                <div class="px-3 w-100 h-100 d-flex flex-column justify-content-center border-left-0">
                                     <a class="m-0 h6 text-secondary text-uppercase font-weight-bold" href="#">{{ $category->name }}</a>
                                 </div>
                             </div>
