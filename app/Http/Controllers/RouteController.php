@@ -25,12 +25,12 @@ class RouteController extends Controller
         $lastnews = Article::where('type', 'news')->latest()->limit(3)->get();
         $ads = Annonce::all();
         $banners = Banner::where('type', 'banner')->latest()->get();
-        $categories = Category::all();
+        $categories = Category::paginate(4);
         $configs = Parametre::all();
         $breakingNews = BreakingNews::where('is_active', true)->latest()->get();
 
         $sidenews = Article::where('type', 'news')->orderBy('created_at', 'asc')->limit(2)->get();
-        $footerCategories = Category::all();
+        $footerCategories = Category::paginate(4);
         $pubnumber = Parametre::where('type', 'numeropub')->first()->data ?? '';
 
         return view('home', compact('pubnumber', 'lastnews', 'lastvedettes', 'categories', 'footerCategories', 'ads', 'configs', 'sidenews', 'banners', 'breakingNews'));
@@ -52,7 +52,7 @@ class RouteController extends Controller
     {
 
         $news = Article::where('type', 'video')->paginate(10);
-        $categories = Category::all();
+        $categories = Category::paginate(4);
         $configs = Parametre::all();
 
         $breakingNews = BreakingNews::where('is_active', true)->latest()->get();
