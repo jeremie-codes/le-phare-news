@@ -60,11 +60,20 @@ class ArticleResource extends Resource
                                     ->nullable(),
                             ]),
 
-                        Forms\Components\Section::make('Content')
+
+                        Forms\Components\Section::make('')
                             ->description('Écrivez le contenu de l\'article')
                             ->schema([
+                                Forms\Components\TextInput::make('title')
+                                    ->label('Titre')
+                                    ->required()
+                                    ->maxLength(255)
+                                    ->live(onBlur: true)
+                                    ->afterStateUpdated(fn (string $operation, $state, Forms\Set $set) =>
+                                        $operation === 'create' ? $set('slug', Str::slug($state)) : null
+                                    ),
                                 Forms\Components\RichEditor::make('content')
-                                ->label('')
+                                    ->label('Contenu')
                                     ->required()
                                     ->fileAttachmentsDisk('public')
                                     ->fileAttachmentsDirectory('articles')
@@ -78,14 +87,6 @@ class ArticleResource extends Resource
                     ->schema([
                         Forms\Components\Section::make('Information & Visibilités')
                             ->schema([
-                                Forms\Components\TextInput::make('title')
-                                    ->label('Titre')
-                                    ->required()
-                                    ->maxLength(255)
-                                    ->live(onBlur: true)
-                                    ->afterStateUpdated(fn (string $operation, $state, Forms\Set $set) =>
-                                        $operation === 'create' ? $set('slug', Str::slug($state)) : null
-                                    ),
                                 Forms\Components\TextInput::make('slug')
                                     ->required()
                                     ->label('Slug (génréré automatiquement)')
@@ -97,6 +98,7 @@ class ArticleResource extends Resource
                                     ->relationship('category', 'name')
                                     ->searchable()
                                     ->preload()
+                                    ->required()
                                     ->columnSpanFull()
                                     ->createOptionForm([
                                         Forms\Components\TextInput::make('name')

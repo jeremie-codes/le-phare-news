@@ -9,6 +9,8 @@ class Banner extends Model
 {
     use HasFactory;
 
+    protected $table = 'articles';
+
     // This model represents a banner that can be displayed on the website.
     protected $fillable = ['title', 'image', 'is_active'];
 
@@ -20,6 +22,15 @@ class Banner extends Model
     public function getImageUrl()
     {
         return asset('storage/' . $this->image);
+    }
+
+    public static function boot() {
+        parent::boot();
+
+        // Automatically set the author_id to the authenticated user
+        static::creating(function ($model) {
+            $model->type = 'banner';
+        });
     }
 
 }

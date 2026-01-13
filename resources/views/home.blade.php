@@ -13,7 +13,7 @@
                         <div class="overflow-hidden position-relative" style="height: 500px;">
                             <img class="img-fluid h-100" src="{{ asset( $banner->image ? $banner->image: 'assets/img/bannerNews-1.jpg') }}" style="object-fit: cover;">
                             <div class="overlay">
-                                <a class="m-0 text-white h2 text-uppercase font-weight-bold" href="#">Lorem ipsum dolor sit amet elit. Proin vitae porta diam...</a>
+                                <a href="{{ $banner->link }}" class="m-0 text-white h2 text-uppercase font-weight-bold" href="#">Lorem ipsum dolor sit amet elit. Proin vitae porta diam...</a>
                             </div>
                         </div>
                         @endforeach
@@ -180,7 +180,7 @@
                                         <a class="text-body" href="#"><small>{{ $lastnew->created_at->format('d M Y') }}</small></a>
                                     </div>
                                     <a class="mb-3 d-block text-secondary text-uppercase font-weight-bold" href="#">{{ $lastnew->title }}</a>
-                                    {!! count($lastnew->content) > 200 ? substr($lastnew->content, 0, 200)."..." : $lastnew->content !!}
+                                    {!! $lastnew->content->count() > 200 ? substr($lastnew->content, 0, 200)."..." : $lastnew->content !!}
                                 </div>
                                 <div class="p-4 bg-white border d-flex justify-content-between border-top-0">
                                     <div class="d-flex align-items-center">
@@ -201,7 +201,7 @@
                         @endforelse
 
                         <div class="mb-3 col-lg-12">
-                            <a href="#"><img class="img-fluid w-100" src="{{ asset('assets/img/ads-728x90.png') }}" alt=""></a>
+                            <a href="#"><img class="img-fluid w-100" src="{{ asset('assets/img/ads-72890.png') }}" alt=""></a>
                         </div>
                     </div>
                 </div>

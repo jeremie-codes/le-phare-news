@@ -63,7 +63,7 @@ class RouteController extends Controller
     public function show($id)
     {
 
-        $article = Actualite::with('comments')->findOrFail($id);
+        $news = Actualite::with('comments')->findOrFail($id);
         $breakingNews = BreakingNews::where('is_active', true)->latest()->get();
         $configs = Parametre::all();
 

@@ -68,7 +68,7 @@
                 </a>
             </div>
             <div class="text-center col-lg-8 text-lg-right">
-                <a href="../../htmlcodex.com/index.html"><img class="img-fluid" src="{{ asset('assets/img/ads-728x90.png') }}" alt=""></a>
+                <a href="../../htmlcodex.com/index.html"><img class="img-fluid" src="{{ asset('assets/img/ads-72890.png') }}" alt=""></a>
             </div>
         </div>
     </div>

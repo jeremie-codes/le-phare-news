@@ -33,34 +33,87 @@ class BannerResource extends Resource
     {
         return $form
             ->schema([
-                Section::make('Informations')
+                Forms\Components\Group::make()
                     ->schema([
-                        TextInput::make('title')
-                            ->label('Titre')
-                            ->required()
-                            ->maxLength(255),
-                        FileUpload::make('image')
-                            ->label('Image')
-                            ->directory('banners')
-                            ->image()
-                            ->required(),
-                        Toggle::make('is_active')
-                            ->label('Actif')
-                            ->default(true),
-                    ]),
-            ])->columns(1);
-            //     TextInput::make('title')
-            //         ->label('Titre')
-            //         ->maxLength(255),
-            //     FileUpload::make('image')
-            //         ->label('Image')
-            //         ->directory('banners')
-            //         ->image()
-            //         ->required(),
-            //     Toggle::make('is_active')
-            //         ->label('Actif')
-            //         ->default(true),
-            ;
+                        Forms\Components\Section::make('Média')
+                            ->schema([
+                                Forms\Components\FileUpload::make('cover_image')
+                                    ->label('Image de couverture')
+                                    ->image()
+                                    ->required()
+                                    ->maxSize(2048) // 2MB
+                                    ->directory('covers'),
+                                Forms\Components\TextInput::make('title')
+                                    ->label('Titre')
+                                    ->required()
+                                    ->maxLength(255)
+                                    ->live(onBlur: true)
+                                    ->afterStateUpdated(fn (string $operation, $state, Forms\Set $set) =>
+                                        $operation === 'create' ? $set('slug', Str::slug($state)) : null
+                                    ),
+                            ]),
+
+                        Forms\Components\Section::make('Contenus')
+                            ->description('Écrivez le contenu de l\'article')
+                            ->schema([
+                                Forms\Components\RichEditor::make('content')
+                                ->label('')
+                                    ->required()
+                                    ->fileAttachmentsDisk('public')
+                                    ->fileAttachmentsDirectory('articles')
+                                    ->columnSpanFull(),
+                            ]),
+                    ])
+                    ->columnSpan(['lg' => 2]),
+
+                Forms\Components\Group::make()
+                    ->schema([
+                        Forms\Components\Section::make('Information & Visibilités')
+                            ->schema([
+                                Forms\Components\TextInput::make('slug')
+                                    ->required()
+                                    ->label('Slug (génréré automatiquement)')
+                                    ->maxLength(255)
+                                    ->readonly(true)
+                                    ->unique(Actualite::class, 'slug', ignoreRecord: true)
+                                    ->rule('alpha_dash'),
+                                Forms\Components\Select::make('category_id')
+                                    ->relationship('category', 'name')
+                                    ->searchable()
+                                    ->preload()
+                                    ->required()
+                                    ->columnSpanFull()
+                                    ->createOptionForm([
+                                        Forms\Components\TextInput::make('name')
+                                            ->label('Nom de la categorie')
+                                            ->required()
+                                            ->maxLength(255)
+                                            ->live(onBlur: true),
+                                        Forms\Components\Textarea::make('description')
+                                            ->maxLength(1000)
+                                            ->columnSpanFull(),
+                                    ]),
+                                Forms\Components\DateTimePicker::make('scheduled_at')
+                                    ->label('Date de diffusion')
+                                    ->required(),
+                                Forms\Components\Toggle::make('is_published')
+                                    ->label('Publier')
+                                    ->default(true),
+                            ]),
+
+                        Forms\Components\Section::make('Auteur')
+                            ->schema([
+                                Forms\Components\Select::make('author_id')
+                                    ->relationship('author', 'name')
+                                    ->required()
+                                    ->searchable()
+                                    ->preload()
+                                    ->default(fn () => auth()->id()),
+                            ]),
+                    ])
+                    ->columnSpan(['lg' => 1]),
+            ])
+            ->columns(3);
     }
 
     public static function table(Table $table): Table
