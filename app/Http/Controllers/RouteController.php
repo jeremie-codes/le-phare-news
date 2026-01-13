@@ -24,7 +24,7 @@ class RouteController extends Controller
         $lastvedettes = Article::where('type', 'vedettes')->with('comments')->latest()->limit(6)->get();
         $lastnews = Article::where('type', 'news')->latest()->limit(3)->get();
         $ads = Annonce::all();
-        $banners = Banner::where('is_active', true)->latest()->get();
+        $banners = Banner::where('type', 'banner')->latest()->get();
         $categories = Category::all();
         $configs = Parametre::all();
         $breakingNews = BreakingNews::where('is_active', true)->latest()->get();
