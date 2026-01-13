@@ -18,7 +18,7 @@ return new class extends Migration
             $table->longText('content');
             $table->foreignId('category_id')->nullable()->constrained()->onDelete('set null');
             $table->foreignId('author_id')->constrained('users')->onDelete('cascade');
-            $table->enum('type', ['video', 'news', 'banner'])->nullable()->default(null);
+            $table->enum('type', ['video', 'news', 'banner', 'vedettes'])->nullable()->default(null);
             // $table->enum('status', ['en attente', 'publié', 'archivé'])->default('publié');
             $table->boolean('is_published')->default(true);
             $table->timestamp('scheduled_at')->nullable();

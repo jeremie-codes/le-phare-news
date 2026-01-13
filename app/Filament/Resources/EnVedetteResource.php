@@ -2,32 +2,22 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\BannerResource\Pages;
-use App\Filament\Resources\BannerResource\RelationManagers;
-use App\Models\Banner;
+use App\Filament\Resources\EnVedetteResource\Pages;
+use App\Filament\Resources\EnVedetteResource\RelationManagers;
+use App\Models\EnVedette;
 use Filament\Forms;
-use Filament\Forms\Components\FileUpload;
-use Filament\Forms\Components\Section;
-use Filament\Forms\Components\TextInput;
-use Filament\Forms\Components\Toggle;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
-use Filament\Tables\Columns\BooleanColumn;
-use Filament\Tables\Columns\ImageColumn;
-use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 
-class BannerResource extends Resource
+class EnVedetteResource extends Resource
 {
-    protected static ?string $model = Banner::class;
-
-
-    protected static ?string $navigationIcon = 'heroicon-o-photo';
+    protected static ?string $model = EnVedette::class;
     protected static ?string $navigationGroup = 'Content';
-    protected static ?string $label = 'Bannières';
+    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
     public static function form(Form $form): Form
     {
@@ -119,8 +109,8 @@ class BannerResource extends Resource
     public static function table(Table $table): Table
     {
         return $table
-            ->query(Banner::query()->where('type', 'banner'))
-             ->columns([
+            ->query(EnVedette::query()->where('type', 'vedettes'))
+            ->columns([
                 Tables\Columns\ImageColumn::make('cover_image')
                     ->label('Image')
                     ->getStateUsing(fn (Actualite $record) => asset('storage/' . $record->cover_image)),
@@ -154,6 +144,11 @@ class BannerResource extends Resource
             ->actions([
                 Tables\Actions\EditAction::make(),
                 Tables\Actions\ViewAction::make(),
+            ])
+            ->bulkActions([
+                Tables\Actions\BulkActionGroup::make([
+                    Tables\Actions\DeleteBulkAction::make(),
+                ]),
             ]);
     }
 
@@ -167,9 +162,9 @@ class BannerResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListBanners::route('/'),
-            'create' => Pages\CreateBanner::route('/create'),
-            'edit' => Pages\EditBanner::route('/{record}/edit'),
+            'index' => Pages\ListEnVedettes::route('/'),
+            'create' => Pages\CreateEnVedette::route('/create'),
+            'edit' => Pages\EditEnVedette::route('/{record}/edit'),
         ];
     }
 }

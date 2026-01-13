@@ -2,16 +2,13 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Banner extends Model
+class EnVedette extends Model
 {
-    use HasFactory;
-
     protected $table = 'articles';
 
-     /**
+    /**
      * The attributes that are mass assignable.
      *
      * @var array<int, string>
@@ -32,26 +29,16 @@ class Banner extends Model
         'rubrique',
     ];
 
-    /**
-     * Get the URL of the banner image.
-     *
-     * @return string
-     */
-    public function getImageUrl()
-    {
-        return asset('storage/' . $this->image);
-    }
-
     public static function boot() {
         parent::boot();
 
         // Automatically set the author_id to the authenticated user
         static::creating(function ($model) {
-            $model->type = 'banner';
+            $model->type = 'vedettes';
         });
     }
 
-    /**
+     /**
      * Get the author of the article.
      */
     public function author()
