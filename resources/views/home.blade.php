@@ -238,8 +238,8 @@
                         </div>
 
                         @forelse($categories as $category)
-                        <div class="p-3 bg-white border border-top-0">
-                            <div class="mb-3 bg-white d-flex align-items-center" style="height: 110px;">
+                        <div class="p-3 border pbg-white p border-top-0">
+                            <div class="mb-3 bg-white d-flex align-items-center" style="max-height: 110px;">
                                 <img class="img-fluid" src="{{ asset($category->image) }}" alt="">
                                 <div class="px-3 border w-100 h-100 d-flex flex-column justify-content-center border-left-0">
                                     <a class="m-0 h6 text-secondary text-uppercase font-weight-bold" href="#">{{ $category->name }}</a>
@@ -251,6 +251,43 @@
                             <p>Aucune catégorie disponible</p>
                         </div>
                         @endforelse
+
+                        @if ($news->hasPages())
+                    <div class="p-1 bg-white border row border-top-0">
+                        <div class="col-12">
+                            <nav aria-label="Page navigation">
+                                <ul class="pagination justify-content-center">
+
+                                    {{-- Previous Page --}}
+                                    <li class="page-item {{ $news->onFirstPage() ? 'disabled' : '' }}">
+                                        <a class="page-link"
+                                        href="{{ $news->previousPageUrl() ?? '#' }}"
+                                        aria-label="Previous">
+                                            <span aria-hidden="true">&laquo;</span>
+                                        </a>
+                                    </li>
+
+                                    {{-- Pagination Elements --}}
+                                    @foreach ($news->links()->elements[0] ?? [] as $page => $url)
+                                        <li class="page-item {{ $news->currentPage() === $page ? 'active' : '' }}">
+                                            <a class="page-link" href="{{ $url }}">{{ $page }}</a>
+                                        </li>
+                                    @endforeach
+
+                                    {{-- Next Page --}}
+                                    <li class="page-item {{ $news->hasMorePages() ? '' : 'disabled' }}">
+                                        <a class="page-link"
+                                        href="{{ $news->nextPageUrl() ?? '#' }}"
+                                        aria-label="Next">
+                                            <span aria-hidden="true">&raquo;</span>
+                                        </a>
+                                    </li>
+
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                    @endif
                     </div>
                     <!-- Popular News End -->
 
