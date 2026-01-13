@@ -180,7 +180,7 @@
                                         <a class="text-body" href="#"><small>{{ $lastnew->created_at->format('d M Y') }}</small></a>
                                     </div>
                                     <a class="mb-3 d-block text-secondary text-uppercase font-weight-bold" href="#">{{ $lastnew->title }}</a>
-                                    {!! $lastnew->content->count() > 200 ? substr($lastnew->content, 0, 200)."..." : $lastnew->content !!}
+                                    {!! strlen($lastnew->content) > 200 ? substr($lastnew->content, 0, 200)."..." : $lastnew->content !!}
                                 </div>
                                 <div class="p-4 bg-white border d-flex justify-content-between border-top-0">
                                     <div class="d-flex align-items-center">
