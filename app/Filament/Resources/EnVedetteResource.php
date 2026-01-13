@@ -66,7 +66,7 @@ class EnVedetteResource extends Resource
                                     ->label('Slug (génréré automatiquement)')
                                     ->maxLength(255)
                                     ->readonly(true)
-                                    ->unique(Actualite::class, 'slug', ignoreRecord: true)
+                                    ->unique(EnVedette::class, 'slug', ignoreRecord: true)
                                     ->rule('alpha_dash'),
                                 Forms\Components\Select::make('category_id')
                                     ->relationship('category', 'name')
