@@ -113,7 +113,7 @@ class EnVedetteResource extends Resource
             ->columns([
                 Tables\Columns\ImageColumn::make('cover_image')
                     ->label('Image')
-                    ->getStateUsing(fn (EnVedette $record) => asset($record->cover_image)),
+                    ->getStateUsing(fn (EnVedette $record) => asset('storage/' . $record->cover_image)),
                 Tables\Columns\TextColumn::make('title')
                     ->limit(30)
                     ->searchable()
