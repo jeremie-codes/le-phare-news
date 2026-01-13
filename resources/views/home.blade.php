@@ -141,7 +141,7 @@
                             <div class="mb-2">
                                 <a class="p-2 mr-2 badge badge-primary text-uppercase font-weight-semi-bold"
                                     href="#">{{ $lastvedette->category->name }}</a>
-                                <a class="text-white" href="#"><small>{{ $lastvedette->created_at->format('d M Y') }}</small></a>
+                                <a class="text-white" href="{{ route('news.show', $lastvedette->id) }}"><small>{{ $lastvedette->created_at->format('d M Y') }}</small></a>
                             </div>
                             <a class="m-0 text-white h6 text-uppercase font-weight-semi-bold" href="#">{{ substr($lastvedette->title, 0, 40) }}</a>
                         </div>
@@ -172,14 +172,14 @@
                         @forelse($lastnews as $lastnew)
                         <div class="col-lg-6">
                             <div class="mb-3 position-relative">
-                                <img class="img-fluid w-100" src="{{ asset($lastnew->image ?: 'assets/img/bannerNews-2.jpg') }}" style="object-fit: cover;">
+                                <img class="img-fluid w-100" src="{{ asset($lastnew->cover_image ?: 'assets/img/bannerNews-2.jpg') }}" style="object-fit: cover;">
                                 <div class="p-4 bg-white border border-top-0">
                                     <div class="mb-2">
                                         <a class="p-2 mr-2 badge badge-primary text-uppercase font-weight-semi-bold"
                                             href="#">{{ $lastnew->category->name }}</a>
                                         <a class="text-body" href="#"><small>{{ $lastnew->created_at->format('d M Y') }}</small></a>
                                     </div>
-                                    <a class="mb-3 d-block text-secondary text-uppercase font-weight-bold" href="#">{{ $lastnew->title }}</a>
+                                    <a href="{{ route('news.show', $lastnew->id) }}" class="mb-3 d-block text-secondary text-uppercase font-weight-bold" href="#">{{ $lastnew->title }}</a>
                                     {!! strlen($lastnew->content) > 200 ? substr($lastnew->content, 0, 200)."..." : $lastnew->content !!}
                                 </div>
                                 <div class="p-4 bg-white border d-flex justify-content-between border-top-0">
@@ -216,7 +216,7 @@
                         <div class="owl-carousel main-carousel position-relative">
                             @forelse ($ads as $ad)
                             <div class="overflow-hidden position-relative" style="height: 500px;">
-                                <img class="img-fluid h-100" src="{{ asset($ad->image) }}" style="object-fit: cover;">
+                                <img class="img-fluid h-100" src="{{ asset($ad->image) }}" alt="" style="object-fit: cover;">
                                 <div class="overlay">
                                     <a class="m-0 text-white text-uppercase font-weight-semi-bold" href="#">{{ $ad->contenu }}</a>
                                 </div>

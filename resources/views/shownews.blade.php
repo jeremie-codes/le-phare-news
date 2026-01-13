@@ -2,6 +2,24 @@
 
 @section('title', 'DETAILS')
 
+@section('meta')
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="{{ $news->title }}">
+    <meta property="og:description" content="{{ \Illuminate\Support\Str::limit(strip_tags($news->content), 150) }}">
+    <meta property="og:url" content="{{ url()->current() }}">
+
+    <meta property="og:image" content="{{ asset('storage/'.$news->cover_image) }}">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+
+    <!-- Pour Twitter (optionnel mais recommandé) -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="{{ $news->title }}">
+    <meta name="twitter:description" content="{{ \Illuminate\Support\Str::limit(strip_tags($news->content), 150) }}">
+    <meta name="twitter:image" content="{{ asset('storage/'.$news->cover_image) }}">
+@endsection
+
+
 @section('content')
 
  <!-- Breaking News Start -->
