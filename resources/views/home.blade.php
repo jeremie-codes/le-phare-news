@@ -172,7 +172,7 @@
                         @forelse($lastnews as $lastnew)
                         <div class="col-lg-6">
                             <div class="mb-3 position-relative">
-                                <img class="img-fluid w-100" src="{{ asset($lastnew->cover_image ?: 'assets/img/bannerNews-2.jpg') }}" style="object-fit: cover;">
+                                <img class="img-fluid w-100" src="{{ asset('storage/' .$lastnew->cover_image ?: 'assets/img/bannerNews-2.jpg') }}" style="object-fit: cover;">
                                 <div class="p-4 bg-white border border-top-0">
                                     <div class="mb-2">
                                         <a class="p-2 mr-2 badge badge-primary text-uppercase font-weight-semi-bold"
