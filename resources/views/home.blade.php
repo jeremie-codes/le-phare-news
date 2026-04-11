@@ -259,7 +259,7 @@
                     <!-- Ads Start -->
                     <div class="mb-3">
                         <div class="mb-0 section-title">
-                            <h4 class="m-0 text-uppercase font-weight-bold">Publicité</h4>
+                            <h4 class="m-0 text-uppercase font-weight-bold">Annonce & Publicité</h4>
                         </div>
                         <div class="owl-carousel main-carousel position-relative">
                             @forelse ($ads as $ad)
