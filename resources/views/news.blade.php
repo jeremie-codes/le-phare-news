@@ -4,7 +4,7 @@
 
 @section('content')
    <!-- News With Sidebar Start -->
-    <div class="container-fluid">
+    <div class="mt-3 container-fluid">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
@@ -15,31 +15,34 @@
                             </div>
                         </div>
 
-                        @forelse($news as $new)
-                        <div class="col-lg-4">
-                            <div class="mb-3 position-relative">
-                                <img class="img-fluid w-100" src="{{ asset($new->image ?: 'assets/img/bannerNews-2.jpg') }}" style="object-fit: cover;">
-                                <div class="p-4 bg-white border border-top-0">
-                                    <div class="mb-2">
-                                        <a class="p-2 mr-2 badge badge-primary text-uppercase font-weight-semi-bold"
-                                            href="#">{{ $new->category->name }}</a>
-                                        <a class="text-body" href="#"><small>{{ $new->created_at->format('d M, Y') }}</small></a>
-                                    </div>
-                                    <a class="mb-3 d-block text-secondary text-uppercase font-weight-bold" href="#">{{ $new->title }}</a>
-                                    {!! count($new->content) > 200 ? substr($new->content, 0, 200)."..." : $new->content !!}
-                                </div>
-                                <div class="p-4 bg-white border d-flex justify-content-between border-top-0">
-                                    <div class="d-flex align-items-center">
-                                        <img class="mr-2 rounded-circle" src="{{ asset('assets/img/logo.jpeg') }}" width="25" height="25" alt="">
-                                        <small>Le Phare News</small>
-                                    </div>
-                                    <div class="d-flex align-items-center">
-                                        <small class="ml-3"><i class="mr-2 far fa-eye"></i></small>
-                                        {{-- <small class="ml-3"><i class="mr-2 far fa-comment"></i>123</small> --}}
+                       @forelse($news as $new)
+                            <div class="col-lg-4">
+                                <div class="mb-3 position-relative">
+                                    {{-- Correction Image --}}
+                                    <img class="img-fluid w-100"
+                                        src="{{ asset($new->cover_image ? 'storage/' . $new->cover_image : 'assets/img/bannerNews-2.jpg') }}"
+                                        style="object-fit: cover; height: 250px;"> {{-- Ajout d'une hauteur fixe pour l'alignement --}}
+
+                                    <div class="p-4 bg-white border border-top-0">
+                                        <div class="mb-2">
+                                            <a class="p-2 mr-2 badge badge-primary text-uppercase font-weight-semi-bold"
+                                                href="#">{{ $new->category->name ?? 'Général' }}</a>
+                                            <a class="text-body" href="#"><small>{{ $new->created_at->format('d M, Y') }}</small></a>
+                                        </div>
+
+                                        {{-- Correction Double HREF --}}
+                                        <a href="{{ route('news.show', $new->id) }}"
+                                            class="mb-3 d-block text-secondary text-uppercase font-weight-bold">
+                                            {{ $new->title }}
+                                        </a>
+
+                                        {{-- Correction Troncature --}}
+                                        <p class="m-0">
+                                            {!! Str::limit(strip_tags($new->content), 150) !!}
+                                        </p>
                                     </div>
                                 </div>
                             </div>
-                        </div>
                         @empty
                             <div class=" position-relative">
                                 <p>Aucune actualité disponible</p>

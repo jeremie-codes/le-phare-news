@@ -4,17 +4,12 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Actualite;
-use App\Models\OpinionEtDecouverte;
-use App\Models\Rubrique;
 use App\Models\Annonce;
 use App\Models\Article;
 use App\Models\Banner;
 use App\Models\BreakingNews;
 use App\Models\Category;
-use App\Models\Comment;
 use App\Models\Parametre;
-use Illuminate\Support\Facades\DB;
-use Barryvdh\DomPDF\Facade as PDF;
 
 class RouteController extends Controller
 {
@@ -22,7 +17,7 @@ class RouteController extends Controller
     public function index()
     {
         $lastvedettes = Article::where('type', 'vedettes')->with('comments')->latest()->limit(6)->get();
-        $lastnews = Article::where('type', 'news')->latest()->limit(3)->get();
+        $lastnews = Article::where('type', 'news')->latest()->limit(6)->get();
         $ads = Annonce::all();
         $banners = Banner::where('type', 'banner')->latest()->get();
         $categories = Category::paginate(5);
@@ -39,7 +34,7 @@ class RouteController extends Controller
     public function news()
     {
 
-        $news = Article::where('type', 'news')->paginate(10);
+        $news = Article::where('type', 'news')->latest()->paginate(12);
         $categories = Category::paginate(5);
         $configs = Parametre::all();
 
@@ -51,7 +46,7 @@ class RouteController extends Controller
     public function video()
     {
 
-        $news = Article::where('type', 'video')->paginate(10);
+        $news = Article::where('type', 'video')->latest()->paginate(12);
         $categories = Category::paginate(5);
         $configs = Parametre::all();
 
