@@ -166,8 +166,7 @@
         <div class="container">
             <div class="section-title">
                 <h4 class="m-0 text-uppercase font-weight-bold">Actualités en vedette</h4>
-                <a class="text-secondary font-weight-medium text-decoration-none" href="{{ route('news.index') }}">Voir
-                    tout</a>
+                <a class="text-info font-weight-medium text-decoration-none" href="{{ route('videos.index') }}">Tout voir <i class="fa fa-arrow-right" aria-hidden="true"></i></a></a>
             </div>
             <div
                 class="owl-carousel news-carousel carousel-item-{{ count($lastvedettes) > 0 ? 4 : 1 }} position-relative">
@@ -205,8 +204,8 @@
                         <div class="col-12">
                             <div class="section-title">
                                 <h4 class="m-0 text-uppercase font-weight-bold">Actualités</h4>
-                                <a class="text-secondary font-weight-medium text-decoration-none"
-                                    href="{{ route('videos.index') }}">Voir tout</a>
+                                <a class="text-info font-weight-medium text-decoration-none"
+                                    href="{{ route('news.index') }}">Tout voir <i class="fa fa-arrow-right" aria-hidden="true"></i></a></a>
                             </div>
                         </div>
 
@@ -243,6 +242,10 @@
                                 <p>Aucune actualité disponible</p>
                             </div>
                         @endforelse
+
+                        <div class="mb-3 col-lg-12 d-flex justify-content-center">
+                            <a class="text-info font-weight-medium text-decoration-none" href="{{ route('news.index') }}">Tout voir <i class="fa fa-arrow-right" aria-hidden="true"></i></a>
+                        </div>
 
                         <div class="mb-3 col-lg-12">
                             <a href="#"><img class="img-fluid w-100" src="{{ asset('assets/img/ads-72890.png') }}"
