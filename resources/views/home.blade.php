@@ -109,7 +109,7 @@
                                 <div class="mb-2">
                                     <a class="p-2 mr-2 badge badge-primary text-uppercase font-weight-semi-bold"
                                         href="#">Politique</a>
-                                    <a class="text-white" href="#"><small>Jan 01, 2026</small></a>
+                                    <a class="text-white" href="#"><small>2026</small></a>
                                 </div>
                                 <a class="m-0 text-white h6 text-uppercase font-weight-semi-bold" href="#">Le Président du sénat, Sama Luko...</a>
                             </div>
