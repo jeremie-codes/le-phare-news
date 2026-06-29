@@ -4,8 +4,7 @@
 
 @section('meta')
     <meta property="og:title" content="LePhare Media En Ligne">
-    <meta property="og:description" content="{{ @yield('description', 'Le Phare votre média en ligne, page d\'accueil') }}">
-
+    <meta property="og:description" content="Le Phare votre média en ligne, page d\'accueil">
     <meta property="og:type" content="website">
     <meta property="og:url" content="{{ url()->current() }}">
 
