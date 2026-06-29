@@ -1,20 +1,40 @@
 @extends('layouts.app')
 
 @section('title', 'DETAILS')
+@php
+    $imagePath = public_path('storage/' . $news->cover_image);
+
+    $width = null;
+    $height = null;
+    $mime = null;
+
+    if (file_exists($imagePath)) {
+        [$width, $height] = getimagesize($imagePath);
+        $mime = mime_content_type($imagePath);
+    }
+@endphp
 
 @section('meta')
     <meta name="viewport" content="width=device-width, initial-scale=1">
+
     <meta property="og:title" content="{{ $news->title }}">
     <meta property="og:description" content="{{ \Illuminate\Support\Str::limit(strip_tags($news->content), 150) }}">
 
     <meta property="og:type" content="website">
-    <meta property="og:url" content="{{ url()->current() }}">
+    <meta property="og:url" content="{{ url()->current() }}?content=article-{{ $news->id }}">
+
+    <meta property="og:image" content="{{ asset('storage/' . $news->cover_image) }}">
+
+    @if($width)
+        <meta property="og:image:width" content="{{ $width }}">
+        <meta property="og:image:height" content="{{ $height }}">
+    @endif
+
+    @if($mime)
+        <meta property="og:image:type" content="{{ $mime }}">
+    @endif
 
     <meta property="og:card" content="summary_large_image">
-    <meta property="og:image" content="{{ asset('storage/' . $news->cover_image) }}">
-    <meta property="og:image:width" content="1024">
-    <meta property="og:image:height" content="800">
-    <meta property="og:image:type" content="image/*">
 @endsection
 
 
