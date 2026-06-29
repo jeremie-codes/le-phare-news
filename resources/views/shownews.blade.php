@@ -34,7 +34,7 @@
         <meta property="og:image:type" content="{{ $mime }}">
     @endif
 
-    <meta property="og:card" content="summary_large_image">
+    <meta property="og:card" content="summary_large_image_{{ $news->id }}">
 @endsection
 
 
