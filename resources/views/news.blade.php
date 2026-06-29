@@ -2,6 +2,20 @@
 
 @section('title', 'ACTUALITÉS')
 
+@section('meta')
+    <meta property="og:title" content="LePhare Media En Ligne">
+    <meta property="og:description" content="{{ @yield('description', 'Le Phare votre média en ligne, page d\'accueil') }}">
+
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="{{ url()->current() }}">
+
+    <meta name="og:card" content="summary_large_image">
+    <meta property="og:image" content="{{ url('assets/img/logo.jpeg') }}">
+    <meta property="og:image:width" content="1024">
+    <meta property="og:image:height" content="1024">
+    <meta property="og:image:type" content="image/jpeg">
+@endsection
+
 @section('content')
    <!-- News With Sidebar Start -->
     <div class="mt-3 container-fluid">

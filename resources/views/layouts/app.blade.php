@@ -4,10 +4,9 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
+    <title>{{ config('app.name', 'LePhare') }} - @yield('title')</title>
 
     @yield('meta')
-
-    <title>{{ config('app.name', 'Laravel') }} - @yield('title')</title>
 
     <!-- Favicon -->
     <link href="img/favicon.html" rel="icon">
